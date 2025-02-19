@@ -168,9 +168,28 @@ class Solution:
         result.extend(childrenResult)
         return result
 
+    def search(self, nums: List[int], target: int) -> int:
+        max = len(nums)
+        min = 0
+        result = max//2
+        while nums[result] != target:
+            if max - min <= 0:
+                return -1
+            if nums[result] > target:
+                max = result-1
+            else:
+                min = result+1
+            result = (max+min)//2
+            if result > len(nums)-1 or result < 0:
+                return -1
+        return result
+
+
+
 
 solution = Solution()
 
+result = solution.search([5],9)
 #root = TreeNode(3,TreeNode(9),TreeNode(20,TreeNode(15),TreeNode(7)))
 #result = solution.levelOrder(root)
 print(solution.isSubsequence("abc", "abbaac"))
